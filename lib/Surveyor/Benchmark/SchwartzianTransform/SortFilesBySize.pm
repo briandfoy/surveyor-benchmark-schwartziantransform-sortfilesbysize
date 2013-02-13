@@ -15,30 +15,63 @@ Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize -  Compare the low-te
 
 =head1 SYNOPSIS
 
-	use Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize;
+Use with C<survey> from L<Surveyor::App>:
+
+	% survey -p Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize '/glob/pattern/*'
 
 =head1 DESCRIPTION
 
 =over 4
 
-=cut
-
-=item new
+=item set_up
 
 =cut
 
-sub new {
+sub set_up {
+	my( $self, @args ) = @_;
 	
+	my $glob = $args[0];
+	@L::files = glob $glob;
+	print "Testing with " . @L::files . " files\n";
+
+	my $transform = q|map $_->[0], sort { $a->[1] <=> $b->[1] } map [ $_, -M ]|;
+	my $sort      = q|sort { -M $a <=> -M $b }|;
+
+	my $code = {
+		assign               =>  sub { my @r = @L::files },
+		'glob'               =>  sub { my @files = glob $glob },
+
+		sort_names           =>  sub { sort { $a cmp $b } @L::files },
+		sort_names_assign    =>  sub { my @r = sort { $a cmp $b } @L::files },
+		sort_times_assign    => eval "sub { my \@r = $sort \@L::files }",
+
+		ordinary_orig        => eval "sub { my \@r = $sort glob \$glob }",
+		ordinary_mod         => eval "sub { my \@r = $sort \@L::files }",
+
+		schwartz_orig        => eval "sub { $transform, glob \$glob }",
+		schwartz_orig_assign => eval "sub { my \@r = $transform, glob \$glob }",
+		schwartz_mod         => eval "sub { my \@r = $transform, \@L::files }",
+	};
+	
+	foreach my $key ( keys %$code ) {
+		no strict 'refs';
+		*{"bench_$key"} = $code->{$key};
+		}
+}
+
+=item tear_down
+
+=cut
+
+sub tear_down { 1; }
+
+=item test
+
+=cut
+
+sub test {
+	warn "I haven't defined tests yet";
 	}
-	
-=item init
-
-=cut
-
-sub init {
-	
-	}
-
 
 =back
 
@@ -50,9 +83,9 @@ sub init {
 
 =head1 SOURCE AVAILABILITY
 
-This source is in a Git repository that I haven't made public
-because I haven't bothered to set it up. If you want to clone
-it, just ask and we'll work something out.
+This source is in a Git repository:
+
+	https://github.com/briandfoy/surveyor-benchmark-schwartziantransform-sortfilesbysize
 
 =head1 AUTHOR
 
