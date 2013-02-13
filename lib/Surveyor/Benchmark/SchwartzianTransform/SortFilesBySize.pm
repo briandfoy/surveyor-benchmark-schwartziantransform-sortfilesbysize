@@ -11,7 +11,7 @@ $VERSION = '0.11';
 
 =head1 NAME
 
-Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize - This is the description
+Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize -  Compare the low-tech and Schwartzian Transform sorts
 
 =head1 SYNOPSIS
 
