@@ -17,7 +17,7 @@ WriteMakefile(
 
 	META_MERGE => {
 		resources => {
-			Repository => 'https://github.com/briandfoy/surveyor-benchmark-schwartziantransform-sortfilesbysize'
+			repository => 'https://github.com/briandfoy/surveyor-benchmark-schwartziantransform-sortfilesbysize'
 			}
 		},
 
