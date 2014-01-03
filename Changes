@@ -2,3 +2,6 @@
 	* First release of a module with the Schwartzian Transform
 	benchmarks I use in Mastering Perl
 
+0.12 - Fri Jan  3 12:23:45 2014
+	* Git rid of MYMETA
+
