@@ -2,24 +2,46 @@ require 5.008;
 use strict;
 use warnings;
 
-my $github    = 'https://github.com/briandfoy/';
-my $main_file = 'lib/Surveyor/Benchmark/SchwartzianTransform/SortFilesBySize.pm';
+use File::Spec::Functions qw(catfile);
+
+my $module    = 'Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize';
+my $github    = 'https://github.com/briandfoy/Surveyor-Benchmark-SchwartzianTransform-SortFilesBySize';
+my $main_file = catfile( 'lib', split /::/, "$module.pm" );
 
 my %WriteMakefile = (
-	'NAME'	        => 'Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize',
+	'NAME'	        => $module,
 	'ABSTRACT_FROM' => $main_file,
 	'VERSION_FROM'  => $main_file,
 	'LICENSE'       => 'perl',
 	'AUTHOR'        => 'brian d foy <bdfoy@cpan.org>',
 	
-	'PREREQ_PM'    => { 
+	'CONFIGURE_REQUIRES' => {
+		'ExtUtils::MakeMaker' => '6.64',
+		},
+
+	'BUILD_REQUIRES' => {
+		},
+
+	'TEST_REQUIRES' => {
 		'Test::More' => '0.94',
 		},
 
-	META_MERGE => {
+	'PREREQ_PM'     => {
+		},
+
+	'META_MERGE' => {
+		'meta-spec' => { version => 2 },
 		resources => {
-			repository => 'https://github.com/briandfoy/surveyor-benchmark-schwartziantransform-sortfilesbysize'
-			}
+			repository => {
+				type => 'git',
+				url  => "$github.git",
+				web  => $github,
+				},
+			bugtraker => {
+				web    => "$github/issues",
+				},
+			homepage => $github,
+			},
 		},
 
 	clean  => { FILES    => q|Surveyor-Benchmark-SchwartzianTransform-SortFilesBySize-*| },
