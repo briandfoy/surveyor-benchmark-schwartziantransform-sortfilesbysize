@@ -5,6 +5,8 @@ use warnings;
 use File::Spec::Functions qw(catfile);
 
 my $module    = 'Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize';
+( my $dist = $module ) =~ s/::/-/g;
+
 my $github    = 'https://github.com/briandfoy/Surveyor-Benchmark-SchwartzianTransform-SortFilesBySize';
 my $main_file = catfile( 'lib', split /::/, "$module.pm" );
 
