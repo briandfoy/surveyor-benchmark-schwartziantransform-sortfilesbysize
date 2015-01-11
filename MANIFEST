@@ -1,0 +1,14 @@
+Changes
+examples/placeholder.pl
+lib/Surveyor/Benchmark/SchwartzianTransform/SortFilesBySize.pm
+LICENSE
+Makefile.PL
+MANIFEST			This list of files
+MANIFEST.SKIP
+README.pod
+t/glob.t
+t/load.t
+t/pod.t
+t/pod_coverage.t
+t/test_manifest
+xt/changes.t
