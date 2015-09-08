@@ -9,6 +9,8 @@ use vars qw($VERSION);
 
 $VERSION = '0.12';
 
+=encoding utf8
+
 =head1 NAME
 
 Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize -  Compare the low-tech and Schwartzian Transform sorts
@@ -29,7 +31,7 @@ Use with C<survey> from L<Surveyor::App>:
 
 sub set_up {
 	my( $self, @args ) = @_;
-	
+
 	my $glob = $args[0];
 	@L::files = glob $glob;
 	print "Testing with " . @L::files . " files\n";
@@ -52,7 +54,7 @@ sub set_up {
 		schwartz_orig_assign => eval "sub { my \@r = $transform, glob \$glob }",
 		schwartz_mod         => eval "sub { my \@r = $transform, \@L::files }",
 	};
-	
+
 	foreach my $key ( keys %$code ) {
 		no strict 'refs';
 		*{"bench_$key"} = $code->{$key};
