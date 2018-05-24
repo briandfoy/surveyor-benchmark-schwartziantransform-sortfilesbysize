@@ -1,5 +1,8 @@
 Revision history for Perl module Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize
 
+0.121 2018-05-24T14:55:07Z
+	* Change to the Artistic License 2.0
+
 0.11 - 2013-02-12
 	* First release of a module with the Schwartzian Transform
 	benchmarks I use in Mastering Perl
