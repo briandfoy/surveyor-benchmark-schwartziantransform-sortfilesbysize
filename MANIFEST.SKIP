@@ -64,3 +64,6 @@
 \.lwpcookies
 
 Surveyor-.*
+\bMANIFEST\s\d
+\bChanges\s\d
+
