@@ -1,3 +1,5 @@
+use 5.008;
+
 package Surveyor::Benchmark::SchwartzianTransform::SortFilesBySize;
 use strict;
 
