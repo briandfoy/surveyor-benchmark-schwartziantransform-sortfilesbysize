@@ -70,3 +70,5 @@ Surveyor-.*
 
 .github_token
 \.gitattributes\b
+
+.downstream.json
